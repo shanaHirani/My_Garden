@@ -114,6 +114,13 @@ dependencies {
     implementation(libs.androidx.profileinstaller)
     implementation(libs.androidx.tracing.ktx)
 
+    //moshie
+    implementation(libs.com.squareup.moshi)
+    implementation(libs.com.squareup.moshi.kotlin)
+    implementation(libs.com.squareup.retrofit2.converter.scalars)
+    implementation(libs.com.squareup.retrofit2.converter.moshi)
+
+
     // Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.accompanist.themeadapter.material)
