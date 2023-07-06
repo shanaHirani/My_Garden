@@ -1,6 +1,6 @@
 package com.example.mygarden.api
 
-import com.example.mygarden.data.PlantSearchResult
+import com.example.mygarden.data.model.Plant.PlantSearchResult
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import okhttp3.logging.HttpLoggingInterceptor
@@ -8,7 +8,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -20,7 +19,7 @@ interface PlantService {
 
     @GET("search/photos")
     suspend fun searchPhotos(
-        @Query("query") query: String,
+        @Query("query") query:String,
         @Query("page") page: Int,
         @Query("per_page") perPage: Int,
         @Query("client_id") clientId: String = ACCESS_KEY
@@ -29,7 +28,7 @@ interface PlantService {
 
     companion object {
 
-        // SECRET KEY = sObeA4gbNMt7C238uLvn-YaxyRb8UarrvoWH-pZPXA
+
         private const val ACCESS_KEY = "6oPM7YzfIicsFCIJsQ5XByofFQhDkt_0nhlt7NrRPSU"
         private const val BASE_URL = "https://api.unsplash.com/"
         fun create():PlantService{

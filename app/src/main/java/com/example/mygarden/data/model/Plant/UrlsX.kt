@@ -1,9 +1,10 @@
-package com.example.mygarden.data
+package com.example.mygarden.data.model.Plant
 
-data class Urls(
+data class UrlsX(
     val full: String,
     val raw: String,
     val regular: String,
     val small: String,
+    val small_s3: String,
     val thumb: String
 )

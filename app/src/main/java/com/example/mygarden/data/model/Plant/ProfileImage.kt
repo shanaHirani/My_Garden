@@ -1,4 +1,4 @@
-package com.example.mygarden.data
+package com.example.mygarden.data.model.Plant
 
 data class ProfileImage(
     val large: String,
