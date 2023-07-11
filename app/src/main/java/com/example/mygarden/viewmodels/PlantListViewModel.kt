@@ -6,7 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mygarden.data.model.Plant.PlantSearchResult
+import com.example.mygarden.data.model.domainModel.PlantSearchResult
+import com.example.mygarden.data.model.remoteModel.PlantSearchResultDto
 import com.example.mygarden.data.repository.PlantRepository
 import com.example.mygarden.shared.Event
 import com.example.mygarden.shared.NetworkResponse
@@ -43,7 +44,7 @@ class PlantListViewModel @Inject constructor ( private val plantRepository: Plan
         if (result is NetworkResponse.Success) {
             _apiStatus.value = ApiStatus.DONE
             _plantSearchResult.value = result.value
-            Log.i("ssssss", plantSearchResult.value!!.total.toString())
+            Log.i("ssssss", plantSearchResult.value!!.totalPages.toString())
         }
         if (result is NetworkResponse.Failure) {
             _apiStatus.value = ApiStatus.ERROR

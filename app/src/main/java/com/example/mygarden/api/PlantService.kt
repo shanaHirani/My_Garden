@@ -1,6 +1,6 @@
 package com.example.mygarden.api
 
-import com.example.mygarden.data.model.Plant.PlantSearchResult
+import com.example.mygarden.data.model.remoteModel.PlantSearchResultDto
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import okhttp3.logging.HttpLoggingInterceptor
@@ -23,7 +23,7 @@ interface PlantService {
         @Query("page") page: Int,
         @Query("per_page") perPage: Int,
         @Query("client_id") clientId: String = ACCESS_KEY
-    ): PlantSearchResult
+    ): PlantSearchResultDto
 
 
     companion object {
