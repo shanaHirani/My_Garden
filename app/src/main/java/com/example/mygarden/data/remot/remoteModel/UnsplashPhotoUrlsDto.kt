@@ -1,4 +1,4 @@
-package com.example.mygarden.data.model.remoteModel
+package com.example.mygarden.data.remot.remoteModel
 
 import com.example.mygarden.data.model.domainModel.UnsplashPhotoUrls
 import com.example.mygarden.data.model.domainModel.UnsplashUser

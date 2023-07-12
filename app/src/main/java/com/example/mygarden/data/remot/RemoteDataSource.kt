@@ -1,7 +1,7 @@
 package com.example.mygarden.data.remot
 
 import com.example.mygarden.api.PlantService
-import com.example.mygarden.data.model.remoteModel.PlantSearchResultDto
+import com.example.mygarden.data.remot.remoteModel.PlantSearchResultDto
 import javax.inject.Inject
 import javax.inject.Singleton
 

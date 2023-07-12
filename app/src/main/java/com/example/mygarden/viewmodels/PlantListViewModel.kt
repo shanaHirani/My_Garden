@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mygarden.data.model.domainModel.PlantSearchResult
-import com.example.mygarden.data.model.remoteModel.PlantSearchResultDto
+import com.example.mygarden.data.remot.remoteModel.PlantSearchResultDto
 import com.example.mygarden.data.repository.PlantRepository
 import com.example.mygarden.shared.Event
 import com.example.mygarden.shared.NetworkResponse

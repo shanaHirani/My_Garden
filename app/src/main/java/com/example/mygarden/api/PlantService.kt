@@ -1,8 +1,9 @@
 package com.example.mygarden.api
 
-import com.example.mygarden.data.model.remoteModel.PlantSearchResultDto
+import com.example.mygarden.data.remot.remoteModel.PlantSearchResultDto
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
+import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor.Level
@@ -21,8 +22,7 @@ interface PlantService {
     suspend fun searchPhotos(
         @Query("query") query:String,
         @Query("page") page: Int,
-        @Query("per_page") perPage: Int,
-        @Query("client_id") clientId: String = ACCESS_KEY
+        @Query("per_page") perPage: Int
     ): PlantSearchResultDto
 
 
@@ -33,12 +33,28 @@ interface PlantService {
         private const val BASE_URL = "https://api.unsplash.com/"
         fun create():PlantService{
             val logger = HttpLoggingInterceptor().apply { level = Level.BODY }
+            //query parram
+            val requestInterceptor = Interceptor { chain ->
+
+                val url = chain.request()
+                    .url
+                    .newBuilder()
+                    .addQueryParameter("client_id", ACCESS_KEY)
+                    .build()
+                val request = chain.request()
+                    .newBuilder()
+                    .url(url)
+                    .build()
+
+                return@Interceptor chain.proceed(request)
+            }
 
             val moshi = Moshi.Builder()
                 .add(KotlinJsonAdapterFactory())
                 .build()
 
             val client = OkHttpClient.Builder()
+                .addInterceptor(requestInterceptor)
                 .addInterceptor(logger)
                 .build()
 

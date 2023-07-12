@@ -1,8 +1,8 @@
 package com.example.mygarden.data.repository
 
 import com.example.mygarden.data.model.domainModel.PlantSearchResult
-import com.example.mygarden.data.model.remoteModel.PlantSearchResultDto
-import com.example.mygarden.data.model.remoteModel.asDomain
+import com.example.mygarden.data.remot.remoteModel.PlantSearchResultDto
+import com.example.mygarden.data.remot.remoteModel.asDomain
 import com.example.mygarden.data.remot.RemoteDataSource
 import com.example.mygarden.shared.NetworkResponse
 import javax.inject.Inject
@@ -17,6 +17,4 @@ class PlantRepository @Inject constructor(
             {remoteDataSource.getPlant()},
             {it.asDomain()}
         )
-
-
 }

@@ -137,6 +137,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.runtime.livedata)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.io.coil.kt)
     implementation(libs.glide)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
