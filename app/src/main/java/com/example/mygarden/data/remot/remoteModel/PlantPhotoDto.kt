@@ -1,7 +1,8 @@
 package com.example.mygarden.data.remot.remoteModel
 
+import android.util.Log
+import com.example.mygarden.data.local.localModels.PlantPhotoEntity
 import com.example.mygarden.data.model.domainModel.PlantPhoto
-import com.example.mygarden.data.model.domainModel.UnsplashUser
 import com.squareup.moshi.Json
 
 data class PlantPhotoDto(
@@ -11,9 +12,20 @@ data class PlantPhotoDto(
 )
 
 fun PlantPhotoDto.asDomain(): PlantPhoto {
+    Log.i("show plant photo dto", this.toString())
     return PlantPhoto(
         id = this.id,
-        urls = this.urls.asDomain(),
-        user = this.user.asDomain()
+        url = this.urls.small,
+        photographerName = this.user.name,
+        photographerUsername = this.user.username
+    )
+}
+
+fun PlantPhotoDto.asEntity(): PlantPhotoEntity {
+    return PlantPhotoEntity(
+        id = this.id,
+        url = this.urls.small,
+        photographerName = this.user.name,
+        photographerUsername = this.user.username
     )
 }

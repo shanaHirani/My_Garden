@@ -1,7 +1,6 @@
 package com.example.mygarden
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -12,16 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModel
-import com.example.mygarden.api.PlantService
 import com.example.mygarden.ui.theme.MyGardenTheme
-import com.example.mygarden.viewmodels.PlantListViewModel
+import com.example.mygarden.viewmodels.GalleryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity() : ComponentActivity() {
 
-    private val plantListViewModel : PlantListViewModel by viewModels()
+    private val plantListViewModel : GalleryViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

@@ -9,7 +9,7 @@ import javax.inject.Singleton
 class RemoteDataSource @Inject constructor(
     private val plantService:PlantService
 ) {
-        suspend fun getPlant(): PlantSearchResultDto {
-            return plantService.searchPhotos( "''",1,10)
+        suspend fun getPlant(plantName:String): PlantSearchResultDto {
+            return plantService.searchPhotos( plantName,1,3)
         }
 }

@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mygarden.data.model.domainModel.PlantSearchResult
-import com.example.mygarden.data.remot.remoteModel.PlantSearchResultDto
 import com.example.mygarden.data.repository.PlantRepository
 import com.example.mygarden.shared.Event
 import com.example.mygarden.shared.NetworkResponse
@@ -19,7 +18,7 @@ import javax.inject.Inject
 enum class ApiStatus { LOADING, ERROR, DONE }
 
 @HiltViewModel
-class PlantListViewModel @Inject constructor ( private val plantRepository: PlantRepository):ViewModel() {
+class GalleryViewModel @Inject constructor (private val plantRepository: PlantRepository):ViewModel() {
 
     private val _apiStatus = MutableLiveData<ApiStatus>()
     val apiStatus: LiveData<ApiStatus>
@@ -40,7 +39,7 @@ class PlantListViewModel @Inject constructor ( private val plantRepository: Plan
 
     private suspend fun getPlant() {
         _apiStatus.value = ApiStatus.LOADING
-        val result = plantRepository.getPlant()
+        val result = plantRepository.getPlant("tomato")
         if (result is NetworkResponse.Success) {
             _apiStatus.value = ApiStatus.DONE
             _plantSearchResult.value = result.value
