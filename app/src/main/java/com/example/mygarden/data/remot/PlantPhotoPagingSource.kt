@@ -9,13 +9,13 @@ private const val UNSPLASH_STARTING_PAGE_INDEX = 1
 
 class PlantPhotoPagingSource(
     private val service: PlantService,
-    private val query: String
+    private val plantName: String
 ) : PagingSource<Int, PlantPhotoDto>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PlantPhotoDto> {
         val page = params.key ?: UNSPLASH_STARTING_PAGE_INDEX
         return try {
-            val response = service.searchPhotos(query, page, params.loadSize)
+            val response = service.searchPhotos(plantName, page, params.loadSize)
             val plantPhotos = response.plants
             LoadResult.Page(
                 data = plantPhotos,

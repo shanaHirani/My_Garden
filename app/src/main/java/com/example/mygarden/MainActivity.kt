@@ -9,18 +9,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.mygarden.compose.GalleryScreen
 import com.example.mygarden.ui.theme.MyGardenTheme
 import com.example.mygarden.viewmodels.GalleryViewModel
+import com.example.mygarden.viewmodels.PlantViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity() : ComponentActivity() {
 
-    private val plantListViewModel : GalleryViewModel by viewModels()
+    private val galleryViewModel : GalleryViewModel by viewModels()
+    private val plantViewModel : PlantViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             MyGardenTheme {
                 // A surface container using the 'background' color from the theme
@@ -28,7 +36,10 @@ class MainActivity() : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting(plantListViewModel.a())
+                   /* val plantPhoto = galleryViewModel.plantPhotoPagingFlow.collectAsLazyPagingItems()
+                    GalleryScreen(plantPhoto)*/
+                    var plants = plantViewModel.Plants.collectAsState(listOf()).value.toString()
+                    Greeting(plants)
                 }
             }
         }

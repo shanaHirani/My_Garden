@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.mygarden.data.model.domainModel.PlantPhoto
 
-@Entity
+@Entity (tableName = "PlantPhoto")
 data class PlantPhotoEntity(
     @PrimaryKey
     val id: String,
