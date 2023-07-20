@@ -1,4 +1,4 @@
-package com.example.mygarden.compose
+package com.example.mygarden.compose.gallery
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement

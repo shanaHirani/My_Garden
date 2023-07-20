@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="plant_item_image_height">190dp</dimen>
+    <dimen name="list_side_margin">6dp</dimen>
+    <dimen name="list_header_margin">16dp</dimen>
+    <dimen name="card_margin">4dp</dimen>
+</resources>

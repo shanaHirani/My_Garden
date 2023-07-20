@@ -1,6 +1,7 @@
 package com.example.mygarden.viewmodels
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.example.mygarden.data.repository.PlantRepository
@@ -12,5 +13,5 @@ import javax.inject.Inject
 class PlantViewModel @Inject constructor(
     plantRepository: PlantRepository
 ):ViewModel() {
-    val Plants = plantRepository.getPlants()
+    val Plants = plantRepository.getPlants().asLiveData()
 }
