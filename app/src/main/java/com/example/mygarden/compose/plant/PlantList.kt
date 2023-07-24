@@ -1,6 +1,5 @@
-package com.example.mygarden.compose.plantList
+package com.example.mygarden.compose.plant
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -8,10 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mygarden.R
 import com.example.mygarden.data.model.domainModel.Plant
@@ -19,7 +16,7 @@ import com.example.mygarden.viewmodels.PlantViewModel
 
 @Composable
 fun PlantList(
-    onPlantClick: (Plant) -> Unit = {},
+    onPlantClick: (Plant) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: PlantViewModel = hiltViewModel()
 ) {

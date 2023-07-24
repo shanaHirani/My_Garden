@@ -4,6 +4,7 @@ package com.example.mygarden.viewmodels
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -23,10 +24,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GalleryViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val plantPhotoRepository: PlantPhotoRepository
 ) : ViewModel() {
 
+    private var queryString: String? = savedStateHandle["plantName"]
+
     val plantPhotoPagingFlow = plantPhotoRepository
-        .getPlantPhotosStream("tomato")
+        .getPlantPhotosStream(queryString)
         .cachedIn(viewModelScope)
 }

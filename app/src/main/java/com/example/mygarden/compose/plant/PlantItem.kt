@@ -1,4 +1,4 @@
-package com.example.mygarden.compose.plantList
+package com.example.mygarden.compose.plant
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api

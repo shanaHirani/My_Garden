@@ -10,8 +10,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.mygarden.compose.plantList.PlantList
-import com.example.mygarden.data.model.domainModel.Plant
+import com.example.mygarden.compose.MyGardenApp
+import com.example.mygarden.compose.plant.PlantList
 import com.example.mygarden.ui.theme.MyGardenTheme
 import com.example.mygarden.viewmodels.GalleryViewModel
 import com.example.mygarden.viewmodels.PlantViewModel
@@ -36,7 +36,7 @@ class MainActivity() : ComponentActivity() {
                     GalleryScreen(plantPhoto)*/
                    /* var plants = plantViewModel.Plants.collectAsState(listOf()).value.toString()
                     Greeting(plants)*/
-                    PlantList()
+                    MyGardenApp()
                 }
             }
         }
