@@ -13,15 +13,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.example.mygarden.data.model.domainModel.PlantPhoto
+import com.example.mygarden.viewmodels.GalleryViewModel
+import com.example.mygarden.viewmodels.PlantDetailViewModel
 
 @Composable
 fun GalleryScreen(
-    plantPhotos: LazyPagingItems<PlantPhoto>
+    galleryViewModel: GalleryViewModel = hiltViewModel(),
 ){
+    val plantPhotos = galleryViewModel.plantPhotoPagingFlow.collectAsLazyPagingItems()
     val context = LocalContext.current
     LaunchedEffect(key1 = plantPhotos.loadState) {
         if(plantPhotos.loadState.refresh is LoadState.Error) {

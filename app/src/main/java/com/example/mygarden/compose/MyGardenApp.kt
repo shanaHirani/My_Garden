@@ -8,7 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.mygarden.compose.plant.PlantDetail
+import com.example.mygarden.compose.gallery.GalleryScreen
+import com.example.mygarden.compose.plant.PlantDetailScreen
 import com.example.mygarden.compose.plant.PlantList
 
 @Composable
@@ -27,14 +28,18 @@ fun MyGardenApp() {
                 navArgument("plantId") { type = NavType.StringType }
             )
         ) {
-            PlantDetail()
+            PlantDetailScreen(
+                onMoveToGalleryClick = {
+                   navController.navigate("gallery/${it}")
+                }
+            )
         }
         composable("gallery/{plantName}",
             arguments = listOf(
                 navArgument("plantName"){ type = NavType.StringType }
             )
         ) {
-
+            GalleryScreen()
         }
     }
 }
