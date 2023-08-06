@@ -1,4 +1,4 @@
-package com.example.mygarden.compose.plant
+package com.example.mygarden.compose.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -34,7 +34,7 @@ fun PlantItem(plant: Plant, onClick: () -> Unit = {}) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ImageListItem(name: String, imageUrl: String, onClick: () -> Unit) {
+fun ImageListItem(name: String, imageUrl: String, onClick: () -> Unit = {}) {
 Card(
     modifier = Modifier.fillMaxSize()
         .padding(dimensionResource(id = R.dimen.card_margin))

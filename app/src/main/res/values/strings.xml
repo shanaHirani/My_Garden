@@ -1,3 +1,15 @@
 <resources>
+
     <string name="app_name">My Garden</string>
+
+    <!-- home screen -->
+    <string name="title">lila shop provide all type of plant: tree, indoor,outdoor. </string>
+
+    <!-- bottom nav bar -->
+    <string name="bottom_bar_home">home</string>
+    <string name="bottom_bar_my_garden">my garden</string>
+    <string name="bottom_bar_location">lila shops</string>
+    <string name="bottom_bar_music">music</string>
+    <string name="bottom_bar_gallery">gallery</string>
+
 </resources>

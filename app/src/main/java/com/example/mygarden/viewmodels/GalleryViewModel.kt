@@ -25,10 +25,12 @@ import javax.inject.Inject
 @HiltViewModel
 class GalleryViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val plantPhotoRepository: PlantPhotoRepository
+    plantPhotoRepository: PlantPhotoRepository
 ) : ViewModel() {
 
     private var queryString: String? = savedStateHandle["plantName"]
+
+     val plantName = queryString?:"Anemone"
 
     val plantPhotoPagingFlow = plantPhotoRepository
         .getPlantPhotosStream(queryString)
