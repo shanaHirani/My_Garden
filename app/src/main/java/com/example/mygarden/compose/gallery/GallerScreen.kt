@@ -33,7 +33,7 @@ import kotlinx.coroutines.flow.flowOf
 @Composable
 fun GalleryScreen(
     viewModel: GalleryViewModel = hiltViewModel(),
-    onUpClick: () -> Unit
+    onUpClick: () -> Unit ={}
 ) {
     GalleryScreen(
         plantPictures = viewModel.plantPhotoPagingFlow,

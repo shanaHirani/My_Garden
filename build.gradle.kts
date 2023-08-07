@@ -14,6 +14,8 @@ buildscript {
 
 plugins {
     id("com.diffplug.spotless") version "6.4.1"
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1" apply false
+
 }
 
 spotless {

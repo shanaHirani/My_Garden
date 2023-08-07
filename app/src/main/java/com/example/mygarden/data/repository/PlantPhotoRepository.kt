@@ -17,10 +17,10 @@ import javax.inject.Inject
 class PlantPhotoRepository  @Inject constructor(
     private val plantService: PlantService
 ) {
-    fun getPlantPhotosStream(query: String?): Flow<PagingData<PlantPhoto>> {
+    fun getPlantPhotosStream(query: String): Flow<PagingData<PlantPhoto>> {
         return Pager(
-            config = PagingConfig(enablePlaceholders = false, pageSize = 7),
-            pagingSourceFactory = { PlantPhotoPagingSource(plantService, query?: "''") }
+            config = PagingConfig(enablePlaceholders = false, pageSize = 25),
+            pagingSourceFactory = { PlantPhotoPagingSource(plantService, query) }
         ).flow.map { PagingData->
             PagingData.map { it ->
                 it.asDomain()

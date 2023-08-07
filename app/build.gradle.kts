@@ -4,6 +4,8 @@ plugins {
     id("kotlin-parcelize")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+
 }
 
 android {
@@ -103,6 +105,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.paging)
     implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.androidx.metrics)
     implementation(libs.material)
     implementation(libs.gson)
     implementation(libs.okhttp3.logging.interceptor)
@@ -143,6 +146,12 @@ dependencies {
     implementation(libs.glide)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
+    //map
+    implementation(libs.com.google.android.play.services.maps)
+    implementation(libs.com.google.maps.android.maps.compose)
+    implementation(libs.androidx.compose.foundation.foundation)
+    implementation(libs.com.google.android.gms.play.services.location)
+
     // Testing dependencies
     debugImplementation(libs.androidx.monitor)
     kaptAndroidTest(libs.hilt.android.compiler)
@@ -160,4 +169,6 @@ dependencies {
     androidTestImplementation(libs.accessibility.test.framework)
     androidTestImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.junit)
+
+
 }

@@ -1,6 +1,5 @@
 package com.example.mygarden.navigation
 
-import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.mygarden.R
 
 enum class TopLevelDestination(

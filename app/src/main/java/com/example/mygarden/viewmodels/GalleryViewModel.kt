@@ -13,12 +13,14 @@ import com.example.mygarden.data.model.domainModel.PlantPhoto
 import com.example.mygarden.data.model.domainModel.PlantSearchResult
 import com.example.mygarden.data.repository.PlantPhotoRepository
 import com.example.mygarden.data.repository.PlantRepository
+import com.example.mygarden.feature.Plant_Name
 import com.example.mygarden.shared.Event
 import com.example.mygarden.shared.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
 
@@ -28,11 +30,17 @@ class GalleryViewModel @Inject constructor(
     plantPhotoRepository: PlantPhotoRepository
 ) : ViewModel() {
 
-    private var queryString: String? = savedStateHandle["plantName"]
+    private var queryString: String? = savedStateHandle["$Plant_Name"]
 
-     val plantName = queryString?:"Anemone"
+    var plantName = queryString ?: "Tulip"
+    init{
+        if(plantName.equals("{$Plant_Name}")) {
+            plantName = "Tulip"
+        }
+        Log.i("ssssss",plantName)
+    }
 
     val plantPhotoPagingFlow = plantPhotoRepository
-        .getPlantPhotosStream(queryString)
+        .getPlantPhotosStream(plantName)
         .cachedIn(viewModelScope)
 }

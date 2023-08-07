@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mygarden.R
 import com.example.mygarden.data.model.domainModel.Plant
-import com.example.mygarden.ui.theme.DeapGreen
+import com.example.mygarden.ui.theme.DeepGreen
 import com.example.mygarden.ui.theme.LightGreen
 import com.example.mygarden.viewmodels.PlantViewModel
 import androidx.compose.material.Icon
@@ -88,7 +88,7 @@ fun Title() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(dimensionResource(id = R.dimen.title_height))
-                .background(DeapGreen)
+                .background(DeepGreen)
                 .padding(15.dp)
 
         ) {
