@@ -29,7 +29,7 @@ fun ShopsLocationScreen() {
    GoogleMap(
        modifier=Modifier
            .fillMaxSize()
-           .padding(0.dp,0.dp,0.dp,70.dp),
+           .padding(0.dp,0.dp,0.dp,60.dp),
        cameraPositionState = cameraPositionState
    ){
         Marker(

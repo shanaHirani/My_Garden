@@ -20,10 +20,12 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
@@ -61,7 +63,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -73,8 +77,9 @@ import com.example.mygarden.ui.theme.DeepGreen
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MyGardenApp(
-    appState: MyGardenAppState = rememberMyGardenAppState(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    appState: MyGardenAppState = rememberMyGardenAppState()
+
 ) {
     Scaffold(
         modifier = modifier,
@@ -103,23 +108,36 @@ private fun MyGardenBottomBar(
     modifier: Modifier,
 ) {
     BottomNavigation(
-        backgroundColor = DeepGreen
+        backgroundColor = DeepGreen,
+        modifier = Modifier.height(60.dp)
     ) {
         destinations.forEach { destination ->
+            val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
+            val contentColor = if (selected) Color.Black else Color.Black.copy(0.4f)
             BottomNavigationItem(
-                modifier = Modifier.size(34.dp),
-                selected = currentDestination.isTopLevelDestinationInHierarchy(destination),
-                selectedContentColor = Color.Red,
-                unselectedContentColor = Color.Black.copy(0.4f),
+                selected = selected,
                 alwaysShowLabel = false,
-                icon = { Icon(painterResource(id = destination.icon), contentDescription = "hi") },
-                label = { Text(text = stringResource(id = destination.title)) },
+                icon = {
+                    Icon(
+                        painterResource(id = destination.icon),
+                        contentDescription = "hi",
+                        modifier = Modifier.size(34.dp),
+                        tint = contentColor
+                    )
+                },
+                label = {
+                    Text(
+                        text = stringResource(id = destination.title),
+                        style = TextStyle(fontSize = 10.sp, color = contentColor)
+                    )
+                },
                 onClick = { onNavigateToDestination(destination) }
             )
         }
     }
 
 }
+
 
 private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination) =
     this?.hierarchy?.any {

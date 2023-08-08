@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.mygarden.data.model.domainModel.Plant
-import com.example.mygarden.data.model.domainModel.PlantPhoto
-import java.util.Calendar
 
 @Entity(tableName = "plants")
 data class PlantEntity(

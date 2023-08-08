@@ -1,9 +1,5 @@
 package com.example.mygarden.data.model.domainModel
 
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-import java.util.Calendar
-
 data class Plant(
     val plantId: String,
     val name: String,

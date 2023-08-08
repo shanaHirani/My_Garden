@@ -11,7 +11,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.mygarden.compose.PlantDetailScreen
-import com.example.mygarden.compose.gallery.GalleryScreen
 import com.example.mygarden.feature.galleryScreen
 import com.example.mygarden.feature.homeRoute
 import com.example.mygarden.feature.homeScreen
@@ -23,7 +22,6 @@ import com.example.mygarden.ui.MyGardenAppState
 @Composable
 fun MyGardenNavHost(
     appState: MyGardenAppState,
-    //onShowSnackbar: suspend (String, String?) -> Boolean,
     modifier: Modifier = Modifier,
     startDestination: String = homeRoute,
 ) {

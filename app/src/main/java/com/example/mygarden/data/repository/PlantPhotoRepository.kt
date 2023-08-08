@@ -7,8 +7,6 @@ import androidx.paging.map
 import com.example.mygarden.api.PlantService
 import com.example.mygarden.data.model.domainModel.PlantPhoto
 import com.example.mygarden.data.remot.PlantPhotoPagingSource
-import com.example.mygarden.data.remot.RemoteDataSource
-import com.example.mygarden.data.remot.remoteModel.PlantPhotoDto
 import com.example.mygarden.data.remot.remoteModel.asDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -21,8 +19,8 @@ class PlantPhotoRepository  @Inject constructor(
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = 25),
             pagingSourceFactory = { PlantPhotoPagingSource(plantService, query) }
-        ).flow.map { PagingData->
-            PagingData.map { it ->
+        ).flow.map { pagingData->
+            pagingData.map { it ->
                 it.asDomain()
             }
         }

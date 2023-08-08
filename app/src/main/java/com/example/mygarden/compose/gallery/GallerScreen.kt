@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -124,13 +123,13 @@ private class GalleryScreenPreviewParamProvider :
                         PlantPhoto(
                             id = "3",
                             url = "https://images.unsplash.com/photo-1564665759044-959473395029?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max",
-                            photographerName = "shana hirani",
+                            photographerName = "shana Hirani",
                             photographerUsername = "John@Smith"
                         ),
                         PlantPhoto(
                             id = "4",
                             url = "https://images.unsplash.com/photo-1557800636-894a64c1696f?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max",
-                            photographerName = "lyla boz",
+                            photographerName = "Lyla boz",
                             photographerUsername = "John@Smith"
                         ),
                     )
