@@ -1,18 +1,11 @@
 package com.example.mygarden.compose
 
-import android.annotation.SuppressLint
-import android.location.Location
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
-import com.google.android.gms.location.*
+import com.example.mygarden.R
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
@@ -29,7 +22,7 @@ fun ShopsLocationScreen() {
    GoogleMap(
        modifier=Modifier
            .fillMaxSize()
-           .padding(0.dp,0.dp,0.dp,60.dp),
+           .padding(0.dp, 0.dp, 0.dp, dimensionResource(id = R.dimen.bottom_menu_height)),
        cameraPositionState = cameraPositionState
    ){
         Marker(

@@ -57,14 +57,6 @@ fun MyGardenNavHost(
             )
         }
 
-//        composable(
-//            "gallery/{plant_name}",
-//            arguments = listOf(
-//                navArgument("plant_name") { type = NavType.StringType }
-//            )
-//        ) {
-//            GalleryScreen()
-//        }
     }
 }
 
