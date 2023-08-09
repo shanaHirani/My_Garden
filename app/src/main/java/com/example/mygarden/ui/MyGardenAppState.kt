@@ -1,11 +1,13 @@
 package com.example.mygarden.ui
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -25,11 +27,12 @@ import com.example.mygarden.feature.shopsLocationRoute
 import com.example.mygarden.navigation.TopLevelDestination
 import com.example.mygarden.shared.TrackDisposableJank
 import kotlinx.coroutines.CoroutineScope
+
 @Composable
 fun rememberMyGardenAppState(
-  //  windowSizeClass: WindowSizeClass,
-  //  networkMonitor: NetworkMonitor,
- //   userNewsResourceRepository: UserNewsResourceRepository,
+    //  windowSizeClass: WindowSizeClass,
+    //  networkMonitor: NetworkMonitor,
+    //   userNewsResourceRepository: UserNewsResourceRepository,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
 ): MyGardenAppState {
@@ -50,6 +53,7 @@ fun rememberMyGardenAppState(
         )
     }
 }
+
 @Stable
 class MyGardenAppState(
     val navController: NavHostController,
@@ -57,7 +61,7 @@ class MyGardenAppState(
     //val windowSizeClass: WindowSizeClass,
     //networkMonitor: NetworkMonitor,
     //userNewsResourceRepository: UserNewsResourceRepository,
-    ) {
+) {
     val currentDestination: NavDestination?
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
@@ -72,41 +76,12 @@ class MyGardenAppState(
             else -> null
         }
 
-//    val shouldShowBottomBar: Boolean
-//        get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
+    val shouldShowBottomBar: Boolean
+        @Composable get() = true
 
-//    val shouldShowNavRail: Boolean
-//        get() = !shouldShowBottomBar
 
-//    val isOffline = networkMonitor.isOnline
-//        .map(Boolean::not)
-//        .stateIn(
-//            scope = coroutineScope,
-//            started = SharingStarted.WhileSubscribed(5_000),
-//            initialValue = false,
-//        )
-
-//    /**
-//     * Map of top level destinations to be used in the TopBar, BottomBar and NavRail. The key is the
-//     * route.
-//     */
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.values().asList()
 
-//    /**
-//     * The top level destinations that have unread news resources.
-//     */
-//    val topLevelDestinationsWithUnreadResources: StateFlow<Set<TopLevelDestination>> =
-//        userNewsResourceRepository.observeAllForFollowedTopics()
-//            .combine(userNewsResourceRepository.observeAllBookmarked()) { forYouNewsResources, bookmarkedNewsResources ->
-//                setOfNotNull(
-//                    FOR_YOU.takeIf { forYouNewsResources.any { !it.hasBeenViewed } },
-//                    BOOKMARKS.takeIf { bookmarkedNewsResources.any { !it.hasBeenViewed } },
-//                )
-//            }.stateIn(
-//                coroutineScope,
-//                SharingStarted.WhileSubscribed(5_000),
-//                initialValue = emptySet(),
-//            )
 
     /**
      * UI logic for navigating to a top level destination in the app. Top level destinations have
