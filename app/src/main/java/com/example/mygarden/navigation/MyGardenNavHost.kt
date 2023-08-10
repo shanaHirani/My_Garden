@@ -48,7 +48,7 @@ fun MyGardenNavHost(
                 onMoveToGalleryClick = {plantName->
                     navController.navigate("gallery_route/${plantName}")
                 },
-                onUpClick = {
+                onBackClick = {
                     navController.navigateUp()
                 },
                 onShareClick = {
@@ -56,7 +56,6 @@ fun MyGardenNavHost(
                 }
             )
         }
-
     }
 }
 

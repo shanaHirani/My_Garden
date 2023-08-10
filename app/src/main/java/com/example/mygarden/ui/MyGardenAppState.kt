@@ -77,7 +77,12 @@ class MyGardenAppState(
         }
 
     val shouldShowBottomBar: Boolean
-        @Composable get() = true
+        @Composable get() {
+            Log.i("ssssssss","${currentDestination?.route?: "null"} ++ ${
+                !(currentDestination?.route?.contains("plantDetail", true) ?: false)
+            }")
+            return !(currentDestination?.route?.contains("plantDetail", true) ?: false)
+        }
 
 
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.values().asList()

@@ -11,5 +11,6 @@
     <string name="bottom_bar_location">lila shops</string>
     <string name="bottom_bar_music">music</string>
     <string name="bottom_bar_gallery">gallery</string>
+    <string name="added_plant_to_garden">Plant added to garden</string>
 
 </resources>

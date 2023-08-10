@@ -40,7 +40,7 @@ fun MyGardenApp(
         containerColor = Color.Transparent,
         contentColor = MaterialTheme.colorScheme.onBackground,
         bottomBar = {
-            if (appState.shouldShowBottomBar || true){
+            if (appState.shouldShowBottomBar){
                 MyGardenBottomBar(
                     destinations = appState.topLevelDestinations,
                     onNavigateToDestination = appState::navigateToTopLevelDestination,
@@ -87,7 +87,9 @@ private fun MyGardenBottomBar(
                         style = TextStyle(fontSize = 10.sp, color = contentColor)
                     )
                 },
-                onClick = { onNavigateToDestination(destination) }
+                onClick = {
+                    onNavigateToDestination(destination)
+                }
             )
         }
     }
@@ -97,7 +99,6 @@ private fun MyGardenBottomBar(
 
 private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination):Boolean {
     return this?.hierarchy?.any {
-        Log.i("ssss ","${it.route}")
         it.route?.contains(destination.name, true) ?: false
     } ?: false
 }

@@ -6,14 +6,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material.Surface
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,25 +24,40 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.example.mygarden.R
 import com.example.mygarden.data.model.domainModel.Plant
+import com.example.mygarden.utilitis.TextSnackbarContainer
 import com.example.mygarden.viewmodels.PlantDetailViewModel
 
 @Composable
 fun PlantDetailScreen(
     plantDetailsViewModel: PlantDetailViewModel = hiltViewModel(),
     onMoveToGalleryClick: (String) -> Unit,
-    onUpClick: () -> Unit,
+    onBackClick: () -> Unit,
     onShareClick: (String) -> Unit,
 ) {
     val plant = plantDetailsViewModel.plant.observeAsState().value
-    if (plant != null)
-        PlantDetailsScreen(
-            plant = plant,
-            onMoveToGalleryClick =onMoveToGalleryClick,
-            onBackClick = onUpClick,
-            onShareClick = onShareClick
-        )
+    val isPlanted = plantDetailsViewModel.isPlanted.collectAsState(initial = false).value
+    val showSnackbar = plantDetailsViewModel.showSnackbar.observeAsState().value
+
+    if (plant != null && isPlanted != null && showSnackbar != null)
+        Surface {
+            TextSnackbarContainer(
+                snackbarText = stringResource(R.string.added_plant_to_garden),
+                showSnackbar = showSnackbar,
+                onDismissSnackbar = { plantDetailsViewModel.dismissSnackbar() }
+            ){
+                PlantDetailsScreen(
+                    plant = plant,
+                    onMoveToGalleryClick =onMoveToGalleryClick,
+                    onBackClick = onBackClick,
+                    onShareClick = onShareClick
+                )
+            }
+        }
 }
+
+
 
 @Composable
 fun PlantDetailsScreen(
@@ -51,7 +69,6 @@ fun PlantDetailsScreen(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(0.dp,0.dp, 0.dp,50.dp)
     ) {
         Box(
             modifier = Modifier
