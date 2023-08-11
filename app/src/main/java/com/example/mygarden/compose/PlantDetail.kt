@@ -1,13 +1,16 @@
 package com.example.mygarden.compose
 
+import android.text.util.Linkify
+import android.util.AttributeSet
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Surface
-import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.livedata.observeAsState
@@ -15,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -23,11 +27,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImage
 import com.example.mygarden.R
 import com.example.mygarden.data.model.domainModel.Plant
 import com.example.mygarden.utilitis.TextSnackbarContainer
 import com.example.mygarden.viewmodels.PlantDetailViewModel
+import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.text.HtmlCompat
+import coil.compose.AsyncImage
+import com.google.android.material.textview.MaterialTextView
 
 @Composable
 fun PlantDetailScreen(
@@ -46,72 +55,121 @@ fun PlantDetailScreen(
                 snackbarText = stringResource(R.string.added_plant_to_garden),
                 showSnackbar = showSnackbar,
                 onDismissSnackbar = { plantDetailsViewModel.dismissSnackbar() }
-            ){
-                PlantDetailsScreen(
+            ) {
+                PlantDetails(
                     plant = plant,
-                    onMoveToGalleryClick =onMoveToGalleryClick,
+                    isPlanted = isPlanted,
+                    onMoveToGalleryClick = onMoveToGalleryClick,
                     onBackClick = onBackClick,
-                    onShareClick = onShareClick
+                    onShareClick = onShareClick,
+                    onFabClick = { plantDetailsViewModel.addPlantToGarden() },
                 )
             }
         }
 }
 
 
-
 @Composable
-fun PlantDetailsScreen(
+fun PlantDetails(
     plant: Plant,
+    isPlanted: Boolean,
     onMoveToGalleryClick: (String) -> Unit = {},
     onBackClick: () -> Unit,
+    onFabClick: () -> Unit,
     onShareClick: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    Card(
+    val nestedScrollConnection = object : NestedScrollConnection {}
+    val lazyListState = rememberLazyListState()
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxWidth(),
+        //.nestedScroll(nestedScrollConnection),
+        state = lazyListState
+    ) {
+        item {
+            ImageShow(
+                url = plant.imageUrl,
+                plantName = plant.name,
+                onMoveToGalleryClick = onMoveToGalleryClick
+            )
+        }
+        item{
+            PlantDescription(plant.description)
+        }
+
+
+    }
+}
+
+@Composable
+private fun PlantDescription(description: String) {
+    val spannedText = HtmlCompat.fromHtml(description, 0)
+    AndroidView(
+        modifier = Modifier.padding(8.dp),
+        factory = {
+            MaterialTextView(it).apply {
+                // links
+                autoLinkMask = Linkify.WEB_URLS
+                linksClickable = true
+                setLinkTextColor(Color.Green.toArgb())
+            }
+        },
+        update = {
+            it.text = spannedText
+        }
+    )
+}
+
+@Composable
+fun ImageShow(
+    url: String,
+    plantName: String,
+    onMoveToGalleryClick: (String) -> Unit = {},
+) {
+    Box(
         modifier = Modifier
             .fillMaxWidth()
+            .height(190.dp)
     ) {
+        AsyncImage(
+            model = url,
+            contentDescription = plantName,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(190.dp),
+            contentScale = ContentScale.Crop
+        )
         Box(
             modifier = Modifier
                 .fillMaxSize()
-        ) {
-            AsyncImage(
-                model = plant.imageUrl,
-                contentDescription = plant.name,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
-            )
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Transparent,
-                                Color.Black
-                            ),
-                            startY = 400f
-                        )
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            Color.Transparent,
+                            Color.Black
+                        ),
+                        startY = 400f
                     )
-            )
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(bottom = 28.dp),
-                contentAlignment = Alignment.BottomCenter
-
-            ) {
-
-                ClickableText(
-                    text = AnnotatedString(plant.name + " gallery"),
-                    style = TextStyle(color = Color.White, fontSize = 30.sp),
-                    onClick = {
-                        onMoveToGalleryClick(plant.name)
-                    }
                 )
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 28.dp),
+            contentAlignment = Alignment.BottomCenter
 
-            }
+        ) {
+
+            ClickableText(
+                text = AnnotatedString(plantName + " gallery"),
+                style = TextStyle(color = Color.White, fontSize = 30.sp),
+                onClick = {
+                    onMoveToGalleryClick(plantName)
+                }
+            )
+
         }
-
     }
 }
 
@@ -119,7 +177,7 @@ fun PlantDetailsScreen(
 @Composable
 fun PlantDetailsScreenPreview() {
 
-    PlantDetailsScreen(
+    PlantDetails(
         Plant(
             plantId = "malus-pumila",
             name = "Apple",
@@ -128,6 +186,8 @@ fun PlantDetailsScreenPreview() {
             wateringInterval = 7, // how often the plant should be watered, in days
             imageUrl = "https://upload.wikimedia.org/wikipedia/commons/2/29/Beetroot_jm26647.jpg"
         ),
+        false,
+        {},
         {},
         {},
         {}

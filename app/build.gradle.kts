@@ -152,6 +152,7 @@ dependencies {
     implementation(libs.androidx.compose.foundation.foundation)
     implementation(libs.com.google.android.gms.play.services.location)
 
+
     // Testing dependencies
     debugImplementation(libs.androidx.monitor)
     kaptAndroidTest(libs.hilt.android.compiler)
