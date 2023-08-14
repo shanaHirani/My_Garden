@@ -24,7 +24,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.mygarden.compose.home.ImageListItem
 import com.example.mygarden.data.model.domainModel.PlantPhoto
 import com.example.mygarden.ui.theme.TopBarDarkGreen
 import com.example.mygarden.viewmodels.GalleryViewModel
@@ -34,12 +33,12 @@ import kotlinx.coroutines.flow.flowOf
 @Composable
 fun GalleryScreen(
     viewModel: GalleryViewModel = hiltViewModel(),
-    onUpClick: () -> Unit ={}
+    onBackClick: () -> Unit
 ) {
     GalleryScreen(
         plantPictures = viewModel.plantPhotoPagingFlow,
         plantName = viewModel.plantName,
-        onUpClick = onUpClick
+        onBackClick = onBackClick
     )
 }
 
@@ -47,13 +46,13 @@ fun GalleryScreen(
 private fun GalleryScreen(
     plantPictures: Flow<PagingData<PlantPhoto>>,
     plantName: String,
-    onUpClick: () -> Unit = {}
+    onBackClick: () -> Unit = {}
 ) {
     Scaffold(
         topBar = {
             GalleryTopBar(
                 plantName = plantName,
-                onUpClick = onUpClick
+                onBackClick = onBackClick
             )
         },
     ){ padding ->
@@ -67,7 +66,7 @@ private fun GalleryScreen(
                 count = pagingItems.itemCount,
             ){ index ->
                 val photo = pagingItems[index] ?: return@items
-                ImageListItem(name = "by " + photo.photographerName , imageUrl = photo.url)
+                GalleryItem(photo)
             }
         }
     }
@@ -76,7 +75,7 @@ private fun GalleryScreen(
 @Composable
 private fun GalleryTopBar(
     plantName: String,
-    onUpClick: () -> Unit,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     TopAppBar(
@@ -87,7 +86,7 @@ private fun GalleryTopBar(
         backgroundColor = TopBarDarkGreen,
         contentColor = Color.White,
         navigationIcon ={
-            IconButton(onClick = onUpClick) {
+            IconButton(onClick = onBackClick) {
                 Icon(
                     Icons.Filled.ArrowBack,
                     contentDescription = null

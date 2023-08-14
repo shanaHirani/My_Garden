@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.mygarden.data.model.domainModel.Plant
+import com.example.mygarden.data.model.domainModel.PlantType
 
 @Entity(tableName = "plants")
 data class PlantEntity(
@@ -20,7 +21,13 @@ fun PlantEntity.asDomain(): Plant {
         plantId = this.plantId,
         name = this.name,
         description = this.description,
-        plantType = this.plantType,
+        plantType = when (this.plantType) {
+            "tree" -> PlantType.Tree
+            "inDoor" -> PlantType.InDoor
+            "outDoor" -> PlantType.OutDoor
+            else ->
+                PlantType.InDoor
+        },
         wateringInterval = this.wateringInterval,
         imageUrl = this.imageUrl
     )

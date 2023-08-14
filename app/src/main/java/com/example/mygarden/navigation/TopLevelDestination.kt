@@ -3,7 +3,7 @@ package com.example.mygarden.navigation
 import com.example.mygarden.R
 
 enum class TopLevelDestination(
-    val icon: Int,
+    val iconDrawableId: Int,
     val title: Int,
 ) {
     HOME(

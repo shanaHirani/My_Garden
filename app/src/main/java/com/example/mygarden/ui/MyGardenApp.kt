@@ -3,7 +3,6 @@ package com.example.mygarden.ui
 
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
@@ -44,8 +43,7 @@ fun MyGardenApp(
                 MyGardenBottomBar(
                     destinations = appState.topLevelDestinations,
                     onNavigateToDestination = appState::navigateToTopLevelDestination,
-                    currentDestination = appState.currentDestination,
-                    modifier = modifier
+                    currentDestination = appState.currentDestination
                 )
             }
         }
@@ -58,10 +56,8 @@ fun MyGardenApp(
 @Composable
 private fun MyGardenBottomBar(
     destinations: List<TopLevelDestination>,
-    //   destinationsWithUnreadResources: Set<TopLevelDestination>,
     onNavigateToDestination: (TopLevelDestination) -> Unit,
-    currentDestination: NavDestination?,
-    modifier: Modifier,
+    currentDestination: NavDestination?
 ) {
     BottomNavigation(
         backgroundColor = DeepGreen,
@@ -75,7 +71,7 @@ private fun MyGardenBottomBar(
                 alwaysShowLabel = false,
                 icon = {
                     Icon(
-                        painterResource(id = destination.icon),
+                        painterResource(id = destination.iconDrawableId),
                         contentDescription = "hi",
                         modifier = Modifier.size(dimensionResource(id = R.dimen.bottom_menu_icon_size)),
                         tint = contentColor

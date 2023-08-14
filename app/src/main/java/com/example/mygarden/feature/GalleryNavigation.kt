@@ -16,7 +16,7 @@ fun NavController.navigateToGallery(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.galleryScreen(
-    onUpClick: () -> Unit
+    onBackClick: () -> Unit
 ) {
     // TODO: Handle back stack for each top-level destination. At the moment each top-level
     // destination may have own search screen's back stack.
@@ -29,6 +29,6 @@ fun NavGraphBuilder.galleryScreen(
             },
         )
     ) {
-        GalleryScreen()
+        GalleryScreen(onBackClick = onBackClick)
     }
 }
