@@ -4,20 +4,29 @@ import com.example.mygarden.R
 
 
 enum class PlantType(
-    val iconDrawableId : Int,
-    val typename:String
-){
+    val iconDrawableId: Int,
+    val typename: String,
+    val typeId: String
+) {
     Tree(
         R.drawable.ic_tree,
+        "tree",
         "tree"
     ),
     InDoor(
         R.drawable.ic_indoor_plants,
-        "in door"
+        "in door",
+        "inDoor"
     ),
     OutDoor(
         R.drawable.ic_outdoor_plant,
-        "out door"
+        "out door",
+        "outDoor"
+    ),
+    NoType(
+        0,
+        "",
+        ""
     )
 }
 

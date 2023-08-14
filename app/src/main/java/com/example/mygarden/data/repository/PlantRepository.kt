@@ -2,6 +2,7 @@ package com.example.mygarden.data.repository
 
 import com.example.mygarden.data.local.Daos.PlantDao
 import com.example.mygarden.data.local.localModels.asDomain
+import com.example.mygarden.data.model.domainModel.PlantType
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,7 +20,10 @@ class PlantRepository @Inject constructor(private val plantDao: PlantDao) {
         it.asDomain()
     }
 
-    fun getPlantsWithPlatTypeNumber(plantType: String) =
-        plantDao.getPlantsWithPlantType(plantType)
-
+    fun getPlantsWithPlatType(plantType:PlantType) =
+        plantDao.getPlantsWithPlantType(plantType.typeId).map {
+            it.mapNotNull { plantEntity ->
+                plantEntity.asDomain()
+            }
+        }
 }

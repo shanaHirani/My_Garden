@@ -1,12 +1,11 @@
 package com.example.mygarden.ui.theme
 
 import androidx.compose.ui.graphics.Color
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 val TextWhite = Color(0xffeeeeee)
 val DeepGreen = Color(0xFF009688)
 val PlantDetailFloatingActionButton = Color(0xDB587721)
-val PenDarkGreen = Color(0xFF1B501D)
+val PenDarkGreen = Color(0xFF1E5F21)
 val LightGreen = Color(0x1C8BC34A)
 val TopBarDarkGreen = Color(0xFF012A26)
 val HomeScreenFilterIcon = Color(0xFFB8F146)

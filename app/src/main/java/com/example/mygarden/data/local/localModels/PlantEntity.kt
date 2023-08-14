@@ -22,9 +22,9 @@ fun PlantEntity.asDomain(): Plant {
         name = this.name,
         description = this.description,
         plantType = when (this.plantType) {
-            "tree" -> PlantType.Tree
-            "inDoor" -> PlantType.InDoor
-            "outDoor" -> PlantType.OutDoor
+            PlantType.Tree.typeId -> PlantType.Tree
+            PlantType.InDoor.typeId -> PlantType.InDoor
+            PlantType.OutDoor.typeId -> PlantType.OutDoor
             else ->
                 PlantType.InDoor
         },
