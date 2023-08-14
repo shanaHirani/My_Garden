@@ -23,7 +23,6 @@ class PlantDatabaseWorker(
                 JsonReader(inputStream.reader()).use { jsonReader ->
                     val plantType = object : TypeToken<List<PlantEntity>>() {}.type
                     val plantList: List<PlantEntity> = Gson().fromJson(jsonReader,plantType)
-
                     val database = AppDatabase.getInstance(applicationContext)
                     database.plantDao().insertAll(plantList)
                 }

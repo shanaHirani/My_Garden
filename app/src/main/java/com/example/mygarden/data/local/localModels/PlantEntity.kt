@@ -10,7 +10,7 @@ data class PlantEntity(
     @PrimaryKey @ColumnInfo(name = "id") val plantId: String,
     val name: String,
     val description: String,
-    val growZoneNumber: Int,
+    val plantType: String,
     val wateringInterval: Int = 7, // how often the plant should be watered, in days
     val imageUrl: String = ""
 )
@@ -20,7 +20,7 @@ fun PlantEntity.asDomain(): Plant {
         plantId = this.plantId,
         name = this.name,
         description = this.description,
-        growZoneNumber = this.growZoneNumber,
+        plantType = this.plantType,
         wateringInterval = this.wateringInterval,
         imageUrl = this.imageUrl
     )
