@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -20,14 +19,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mygarden.R
 import com.example.mygarden.data.model.domainModel.Plant
@@ -38,10 +33,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -52,6 +51,7 @@ import androidx.core.text.HtmlCompat
 import coil.compose.AsyncImage
 import com.example.mygarden.ui.theme.PenDarkGreen
 import com.example.mygarden.ui.theme.PlantDetailFloatingActionButton
+import com.example.mygarden.ui.theme.TopBarDarkGreen
 import com.google.android.material.textview.MaterialTextView
 
 @Composable
@@ -95,25 +95,37 @@ fun PlantDetails(
     onShareClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val lazyListState = rememberLazyListState()
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth(),
-        state = lazyListState
-    ) {
-        item {
-            ImageShow(
-                url = plant.imageUrl,
+    Scaffold(
+        topBar = {
+            PlantDetailTopBar(
+                onBackClick = onBackClick,
+                onShareClick = onShareClick,
+                onMoveToGalleryClick = onMoveToGalleryClick,
                 plantName = plant.name,
-                onMoveToGalleryClick = onMoveToGalleryClick
+                plantDestination = plant.description
             )
         }
-        item {
-            PlantInformation(
-                name = plant.name,
-                wateringInterval = plant.wateringInterval,
-                description = plant.description
-            )
+    ) {
+        val lazyListState = rememberLazyListState()
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(it),
+            state = lazyListState
+        ) {
+            item {
+                ImageShow(
+                    url = plant.imageUrl,
+                    plantName = plant.name,
+                )
+            }
+            item {
+                PlantInformation(
+                    name = plant.name,
+                    wateringInterval = plant.wateringInterval,
+                    description = plant.description
+                )
+            }
         }
     }
     if (!isPlanted)
@@ -165,6 +177,44 @@ private fun PlantInformation(
 }
 
 @Composable
+private fun PlantDetailTopBar(
+    onBackClick: () -> Unit,
+    plantName: String,
+    plantDestination: String,
+    onShareClick: (String) -> Unit,
+    onMoveToGalleryClick: (String) -> Unit
+) {
+    TopAppBar(
+        backgroundColor = TopBarDarkGreen,
+        contentColor = Color.White ,
+        navigationIcon = {
+            IconButton(onClick = onBackClick) {
+                Icon(
+                    Icons.Filled.ArrowBack,
+                    contentDescription = null
+                )
+            }
+        },
+        title = {
+            Text(text = "$plantName details")
+        },
+        actions = {
+            IconButton(onClick = { onShareClick(plantDestination) }) {
+                Icon(painterResource(id = R.drawable.ic_share),
+                    contentDescription = "share",
+                    modifier = Modifier.size(dimensionResource(id = R.dimen.top_bar_icon_size))
+                )
+            }
+            IconButton(onClick = { onMoveToGalleryClick(plantName) }) {
+                Icon(painterResource(id = R.drawable.ic_gallery),
+                    contentDescription = "gallery",
+                    modifier = Modifier.size(dimensionResource(id = R.dimen.top_bar_icon_size)))
+            }
+        }
+    )
+}
+
+@Composable
 private fun Fab(onFabClick: () -> Unit) {
 
     Column(
@@ -183,7 +233,7 @@ private fun Fab(onFabClick: () -> Unit) {
                 Icons.Filled.Add,
                 contentDescription = "",
                 modifier = Modifier.size(45.dp)
-                )
+            )
         }
     }
 }
@@ -211,48 +261,15 @@ private fun PlantDescription(description: String) {
 fun ImageShow(
     url: String,
     plantName: String,
-    onMoveToGalleryClick: (String) -> Unit = {},
 ) {
-    Box(
+    AsyncImage(
         modifier = Modifier
             .fillMaxWidth()
-            .height(dimensionResource(R.dimen.plant_details_image_height))
-    ) {
-        AsyncImage(
-            model = url,
-            contentDescription = plantName,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Color.Black
-                        ),
-                        startY = 400f
-                    )
-                )
-        )
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
-            contentAlignment = Alignment.BottomEnd
-
-        ) {
-            Icon(
-                painterResource(id = R.drawable.ic_gallery),
-                contentDescription = "hi",
-                modifier = Modifier.clickable { onMoveToGalleryClick(plantName) }
-                    .size(dimensionResource(id = R.dimen.plant_details_icon_size)),
-                tint = Color.White
-            )
-        }
-    }
+            .height(dimensionResource(R.dimen.plant_details_image_height)),
+        model = url,
+        contentDescription = plantName,
+        contentScale = ContentScale.Crop
+    )
 }
 
 @Preview

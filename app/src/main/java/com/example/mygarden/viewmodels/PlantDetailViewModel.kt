@@ -27,7 +27,7 @@ class PlantDetailViewModel @Inject constructor(
         emit(false)
     }
 
-    private val _showSnackbar = MutableLiveData(true)
+    private val _showSnackbar = MutableLiveData(false)
     val showSnackbar: LiveData<Boolean>
         get() = _showSnackbar
 

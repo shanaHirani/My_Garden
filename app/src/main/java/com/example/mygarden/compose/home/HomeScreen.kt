@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -33,10 +32,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mygarden.R
 import com.example.mygarden.data.model.domainModel.Plant
-import com.example.mygarden.ui.theme.DeepGreen
 import com.example.mygarden.ui.theme.LightGreen
 import com.example.mygarden.viewmodels.PlantViewModel
 import androidx.compose.material.Icon
+import com.example.mygarden.ui.theme.HomeScreenFilterIcon
+import com.example.mygarden.ui.theme.TopBarDarkGreen
 
 @Composable
 fun HomeScreen(
@@ -59,11 +59,6 @@ fun HomeScreen(
             .background(LightGreen)
             .padding(0.dp, 0.dp, 0.dp, dimensionResource(id = R.dimen.bottom_menu_height))
     ) {
-        Spacer(
-            modifier = Modifier
-                .height(8.dp)
-
-        )
         Title()
         PlantList(plants = plants, modifier, onPlantClick = onPlantClick)
     }
@@ -88,7 +83,7 @@ fun Title() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(dimensionResource(id = R.dimen.title_height))
-                .background(DeepGreen)
+                .background(TopBarDarkGreen)
                 .padding(15.dp)
 
         ) {
@@ -112,8 +107,8 @@ fun Title() {
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_filter),
-                        contentDescription = "Search",
-                        tint = Color.Red,
+                        contentDescription = "filter",
+                        tint = HomeScreenFilterIcon,
                         modifier = Modifier.size(34.dp)
                     )
                 }

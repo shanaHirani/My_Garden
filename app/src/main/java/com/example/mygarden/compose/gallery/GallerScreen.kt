@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
@@ -25,6 +26,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.mygarden.compose.home.ImageListItem
 import com.example.mygarden.data.model.domainModel.PlantPhoto
+import com.example.mygarden.ui.theme.TopBarDarkGreen
 import com.example.mygarden.viewmodels.GalleryViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -82,6 +84,8 @@ private fun GalleryTopBar(
             Text("gallery of $plantName")
         },
         modifier = modifier.statusBarsPadding(),
+        backgroundColor = TopBarDarkGreen,
+        contentColor = Color.White,
         navigationIcon ={
             IconButton(onClick = onUpClick) {
                 Icon(

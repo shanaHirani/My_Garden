@@ -18,5 +18,7 @@
     <dimen name="plant_details_image_height">270dp</dimen>
     <dimen name="plant_details_icon_size">40dp</dimen>
 
+    <dimen name="top_bar_icon_size">20dp</dimen>
+
 
 </resources>
