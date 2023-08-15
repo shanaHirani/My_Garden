@@ -24,7 +24,8 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import com.example.mygarden.R
 import com.example.mygarden.navigation.MyGardenNavHost
 import com.example.mygarden.navigation.TopLevelDestination
-import com.example.mygarden.ui.theme.DeepGreen
+import com.example.mygarden.ui.theme.BottomMenuBackGround
+import com.example.mygarden.ui.theme.PenDarkGreen
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -60,12 +61,12 @@ private fun MyGardenBottomBar(
     currentDestination: NavDestination?
 ) {
     BottomNavigation(
-        backgroundColor = DeepGreen,
+        backgroundColor = BottomMenuBackGround,
         modifier = Modifier.height(dimensionResource(id = R.dimen.bottom_menu_height))
     ) {
         destinations.forEach { destination ->
             val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
-            val contentColor = if (selected) Color.Black else Color.Black.copy(0.4f)
+            val contentColor = if (selected) Color.Black else Color.Black.copy(0.5f)
             BottomNavigationItem(
                 selected = selected,
                 alwaysShowLabel = false,

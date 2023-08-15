@@ -1,7 +1,7 @@
 package com.example.mygarden.data.remot.remoteModel
 
 import com.example.mygarden.data.model.domainModel.PlantPhoto
-import com.example.mygarden.data.model.domainModel.PlantSearchResult
+import com.example.mygarden.data.model.domainModel.PlantPhotoSearchResult
 import com.squareup.moshi.Json
 
 data class PlantSearchResultDto(
@@ -10,8 +10,8 @@ data class PlantSearchResultDto(
     @Json(name = "total")val total: Int
 )
 
-fun PlantSearchResultDto.asDomain(): PlantSearchResult {
-    return PlantSearchResult(
+fun PlantSearchResultDto.asDomain(): PlantPhotoSearchResult {
+    return PlantPhotoSearchResult(
         plants = this.plants.asDomain(),
         totalPages = this.totalPages,
         total = this.total

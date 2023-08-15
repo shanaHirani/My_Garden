@@ -11,6 +11,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.example.mygarden.data.local.Daos.PlantDao
+import com.example.mygarden.data.local.localModels.GardenPlantingDao
 import com.example.mygarden.data.local.localModels.PlantEntity
 import com.example.mygarden.utilitis.Garden_DATABASE_NAME
 import com.example.mygarden.worker.PlantDatabaseWorker
@@ -20,7 +21,7 @@ import com.example.mygarden.worker.PlantDatabaseWorker
 
 abstract class AppDatabase : RoomDatabase() {
     abstract fun plantDao(): PlantDao
-
+    abstract fun gardenPlantingDao(): GardenPlantingDao
     companion object {
         @Volatile
         private var instance: AppDatabase? = null

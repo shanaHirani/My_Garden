@@ -30,6 +30,9 @@ import coil.compose.AsyncImage
 import com.example.mygarden.R
 import com.example.mygarden.data.model.domainModel.Plant
 import com.example.mygarden.data.model.domainModel.PlantType
+import com.example.mygarden.ui.theme.PlantItemAndFilterIcon
+import com.example.mygarden.ui.theme.PlantItemShadow
+import com.example.mygarden.ui.theme.PlantItemTextColor
 
 
 @Composable
@@ -52,24 +55,29 @@ Card(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(dimensionResource(id = R.dimen.plant_item_image_height)),
+                    .height(dimensionResource(id = R.dimen.plant_item_image_height))
+                    .background(color = PlantItemShadow),
                 contentAlignment = Alignment.BottomCenter
 
             ) {
                 AsyncImage(
                     model = imageUrl,
                     contentDescription = name,
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(0.dp,0.dp,0.dp,35.dp),
                     contentScale = ContentScale.Crop
                 )
-                Box(modifier = Modifier.fillMaxSize()
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .padding(0.dp,0.dp,0.dp,35.dp)
                     .background(
                         brush = Brush.verticalGradient(
                             colors = listOf(
                                 Color.Transparent,
-                                Color.Black
+                                PlantItemShadow
                             ),
-                            startY = 200f
+                            startY = 300f
                         )
                     )
                 )
@@ -80,11 +88,11 @@ Card(
                         .padding(all = 8.dp),
                     verticalAlignment = Alignment.Bottom
                 ) {
-                    Text(name, style = TextStyle(color = Color.White, fontSize = 18.sp), modifier = Modifier
+                    Text(name, style = TextStyle(color = PlantItemTextColor, fontSize = 18.sp), modifier = Modifier
                         .weight(1f))
                     Icon(
                         painterResource(id = plantType.iconDrawableId),
-                        tint = Color.Green,
+                        tint = PlantItemAndFilterIcon,
                         contentDescription = plantType.typename,
                         modifier = Modifier.size(dimensionResource(id = R.dimen.bottom_menu_icon_size))
                     )

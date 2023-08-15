@@ -3,6 +3,7 @@ package com.example.mygarden.di
 import android.content.Context
 import com.example.mygarden.data.AppDatabase
 import com.example.mygarden.data.local.Daos.PlantDao
+import com.example.mygarden.data.local.localModels.GardenPlantingDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,5 +27,9 @@ class DatabaseModule {
         return appDatabase.plantDao()
     }
 
-
+    @Singleton
+    @Provides
+    fun provideGardenPlantingDao(appDatabase: AppDatabase): GardenPlantingDao {
+        return appDatabase.gardenPlantingDao()
+    }
 }

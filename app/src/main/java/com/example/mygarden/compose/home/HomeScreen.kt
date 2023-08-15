@@ -32,19 +32,21 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mygarden.R
 import com.example.mygarden.data.model.domainModel.Plant
-import com.example.mygarden.ui.theme.LightGreen
 import com.example.mygarden.viewmodels.PlantViewModel
 import androidx.compose.material.Icon
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.mygarden.data.model.domainModel.PlantType
+import com.example.mygarden.ui.theme.HomeScreenTitleBackGround
+import com.example.mygarden.ui.theme.HomeScreenTitleTextColor
+import com.example.mygarden.ui.theme.PlantItemAndFilterIcon
 import com.example.mygarden.ui.theme.TopBarDarkGreen
 
 @Composable
 fun HomeScreen(
     onPlantClick: (Plant) -> Unit,
-    modifier: Modifier = Modifier.background(LightGreen),
+    modifier: Modifier = Modifier,
     viewModel: PlantViewModel = hiltViewModel()
 ) {
     val plants by viewModel.plants.observeAsState(initial = emptyList())
@@ -68,7 +70,6 @@ fun HomeScreen(
 ) {
     Column(
         modifier = Modifier
-            .background(LightGreen)
             .padding(0.dp, 0.dp, 0.dp, dimensionResource(id = R.dimen.bottom_menu_height))
     ) {
         Title(
@@ -87,7 +88,6 @@ fun Title(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .background(LightGreen)
             .padding(
                 horizontal = dimensionResource(id = R.dimen.title_horizontal_margin),
                 vertical = dimensionResource(id = R.dimen.title_vertical_margin)
@@ -101,7 +101,7 @@ fun Title(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(dimensionResource(id = R.dimen.title_height))
-                .background(TopBarDarkGreen)
+                .background(HomeScreenTitleBackGround)
                 .padding(15.dp)
 
         ) {
@@ -110,7 +110,7 @@ fun Title(
             ) {
                 Text(
                     text = stringResource(id = R.string.title),
-                    style = TextStyle(color = Color.White, fontSize = 18.sp)
+                    style = TextStyle(color =HomeScreenTitleTextColor, fontSize = 18.sp)
                 )
             }
             Box(
@@ -144,7 +144,7 @@ fun Demo_DropDownMenu(
             Icon(
                 painter = painterResource(id = R.drawable.ic_filter),
                 contentDescription = "filter",
-                tint = Color.Green,
+                tint = PlantItemAndFilterIcon,
                 modifier = Modifier.size(30.dp)
             )
         }

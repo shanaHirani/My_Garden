@@ -3,19 +3,23 @@ package com.example.mygarden.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val TextWhite = Color(0xffeeeeee)
-val DeepGreen = Color(0xFF009688)
+
 val PlantDetailFloatingActionButton = Color(0xDB587721)
 val PenDarkGreen = Color(0xFF1E5F21)
 val LightGreen = Color(0x1C8BC34A)
 val TopBarDarkGreen = Color(0xFF012A26)
-val HomeScreenFilterIcon = Color(0xFFB8F146)
 val OrangeYellow3 = Color(0xfff4cf65)
 val Beige1 = Color(0xfffdbda1)
 val Beige2 = Color(0xfffcaf90)
-val Beige3 = Color(0xfff9a27b)
-val LightGreen1 = Color(0xff54e1b6)
-val LightGreen2 = Color(0xff36ddab)
-val LightGreen3 = Color(0xff11d79b)
+
+//home screen
+val BottomMenuBackGround = Color(0xDD587721)
+val PlantItemShadow = Color(0xFF000000)
+val PlantItemTextColor = Color(0xFFFBF9F9)
+val PlantItemAndFilterIcon = Color(0xFF8BC34A)
+val HomeScreenTitleTextColor = Color(0xFFFFFDFD)
+val HomeScreenTitleBackGround = Color(0xFF012A26)
+
 val BlueViolet1 = Color(0xffaeb4fd)
 val BlueViolet2 = Color(0xff9fa5fe)
 val BlueViolet3 = Color(0xff8f98fd)
