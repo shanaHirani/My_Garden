@@ -3,7 +3,7 @@ package com.example.mygarden.di
 import android.content.Context
 import com.example.mygarden.data.AppDatabase
 import com.example.mygarden.data.local.Daos.PlantDao
-import com.example.mygarden.data.local.localModels.GardenPlantingDao
+import com.example.mygarden.data.local.Daos.GardenPlantingDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -6,11 +6,7 @@ val TextWhite = Color(0xffeeeeee)
 
 val PlantDetailFloatingActionButton = Color(0xDB587721)
 val PenDarkGreen = Color(0xFF1E5F21)
-val LightGreen = Color(0x1C8BC34A)
 val TopBarDarkGreen = Color(0xFF012A26)
-val OrangeYellow3 = Color(0xfff4cf65)
-val Beige1 = Color(0xfffdbda1)
-val Beige2 = Color(0xfffcaf90)
 
 //home screen
 val BottomMenuBackGround = Color(0xDD587721)
@@ -20,10 +16,12 @@ val PlantItemAndFilterIcon = Color(0xFF8BC34A)
 val HomeScreenTitleTextColor = Color(0xFFFFFDFD)
 val HomeScreenTitleBackGround = Color(0xFF012A26)
 
-val BlueViolet1 = Color(0xffaeb4fd)
-val BlueViolet2 = Color(0xff9fa5fe)
-val BlueViolet3 = Color(0xff8f98fd)
-val Purple200 = Color(0xFFBB86FC)
+//my garden list item
+val UnNeededIcon = Color(0x9BB0B0B3)
+val WateringIcon = Color(0xFF128EF1)
+val FertilizerIcon = Color(0xFF20C727)
+val InsecticideIcon = Color(0xFFF66A14)
+
 val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)

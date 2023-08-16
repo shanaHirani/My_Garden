@@ -11,11 +11,16 @@
     <dimen name="bottom_menu_height">65dp</dimen>
     <dimen name="bottom_menu_icon_size">40dp</dimen>
 
+    <dimen name="un_plant_needed_icon_size">30dp</dimen>
+    <dimen name="plant_needed_icon_size">50dp</dimen>
+
     <dimen name="filter_menu_icon_size">30dp</dimen>
 
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_extra_small">4dp</dimen>
+    <dimen name="card_side_margin">4dp</dimen>
+    card_side_margin
 
     <dimen name="plant_details_image_height">270dp</dimen>
     <dimen name="plant_details_icon_size">40dp</dimen>

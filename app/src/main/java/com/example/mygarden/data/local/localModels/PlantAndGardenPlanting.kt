@@ -6,7 +6,7 @@ import com.example.mygarden.data.model.domainModel.Plant
 
 data class PlantAndGardenPlantings(
     @Embedded
-    val plant: Plant,
+    val plantEntity: PlantEntity,
 
     @Relation(parentColumn = "id", entityColumn = "plant_id")
     val gardenPlantings: List<GardenPlanting> = emptyList()

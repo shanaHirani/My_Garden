@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.example.mygarden.compose.MyGardenScreen
+import com.example.mygarden.compose.myGarden.MyGardenScreen
 
 const val myGardenRoute = "my_garden_route"
 

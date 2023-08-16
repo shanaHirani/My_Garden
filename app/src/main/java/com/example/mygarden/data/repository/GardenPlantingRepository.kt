@@ -1,5 +1,7 @@
-package com.example.mygarden.data.local.localModels
+package com.example.mygarden.data.repository
 
+import com.example.mygarden.data.local.Daos.GardenPlantingDao
+import com.example.mygarden.data.local.localModels.GardenPlanting
 import javax.inject.Inject
 import javax.inject.Singleton
 

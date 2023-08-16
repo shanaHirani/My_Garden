@@ -11,7 +11,7 @@ import java.util.Calendar
 @Entity(
     tableName = "garden_plantings",
     foreignKeys = [
-        ForeignKey(entity = Plant::class, parentColumns = ["id"], childColumns = ["plant_id"])
+        ForeignKey(entity = PlantEntity::class, parentColumns = ["id"], childColumns = ["plant_id"])
     ],
     indices = [Index("plant_id")]
 )

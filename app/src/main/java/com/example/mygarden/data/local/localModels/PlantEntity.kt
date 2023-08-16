@@ -26,7 +26,7 @@ fun PlantEntity.asDomain(): Plant {
             PlantType.InDoor.typeId -> PlantType.InDoor
             PlantType.OutDoor.typeId -> PlantType.OutDoor
             else ->
-                PlantType.InDoor
+                PlantType.NoType
         },
         wateringInterval = this.wateringInterval,
         imageUrl = this.imageUrl
